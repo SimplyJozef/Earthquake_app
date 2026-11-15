@@ -72,6 +72,13 @@ class AppDataProvider with ChangeNotifier {
     }
   }
 
+  void setOrder(String value) {
+    _orderBy = value;
+    notifyListeners();
+    _setQueryParams();
+    getEarthquakeData();
+  }
+
   Color getAlertColor(String color) {
     return switch(color) {
       'green' => Colors.green,
