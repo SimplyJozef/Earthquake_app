@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:earthquake_app/providers/app_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:earthquake_app/utils/helper_functions.dart';
+import 'package:earthquake_app/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,6 +27,15 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: _showSortingDialog,
             icon: const Icon(Icons.sort),
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
+              );
+            },
           ),
         ],
       ),

@@ -79,6 +79,18 @@ class AppDataProvider with ChangeNotifier {
     getEarthquakeData();
   }
 
+  void setStartTime(String date) {
+    _startTime = date;
+    _setQueryParams();
+    notifyListeners();
+  }
+
+  void setEndTime(String date) {
+    _endTime = date;
+    _setQueryParams();
+    notifyListeners();
+  }
+
   Color getAlertColor(String color) {
     return switch(color) {
       'green' => Colors.green,
