@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:provider/provider.dart';
+import 'providers/app_data_provider.dart';
+import 'pages/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Earthquake App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
-          brightness: Brightness.dark,
+  runApp(
+    ChangeNotifierProvider(
+      create: (ctx) => AppDataProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Earthquake App',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            brightness: Brightness.dark,
+          ),
+          useMaterial3: true,
         ),
-        useMaterial3: true,
+       // Aktualizácia riadku
+        home: const HomePage(),
       ),
-      builder: EasyLoading.init(),
-      home: const Placeholder(),
-    );
-  }
+    ),
+  );
 }
