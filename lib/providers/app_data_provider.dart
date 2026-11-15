@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../models/earthquake_model.dart';
@@ -45,8 +46,10 @@ class AppDataProvider with ChangeNotifier {
   }
 
   init() {
-    _startTime = getFormattedDateTime(DateTime.now().subtract(const Duration(days: 1)).millisecondsSinceEpoch);
-    _endTime = getFormattedDateTime(DateTime.now().millisecondsSinceEpoch);
+    final now = DateTime.now();
+    final earlier = now.subtract(const Duration(days: 10)); // pôvodne 1 deň
+    _startTime = getFormattedDateTime(earlier.millisecondsSinceEpoch);
+    _endTime = getFormattedDateTime(now.millisecondsSinceEpoch);
     _maxRadiusKm = maxRadiusThreshold;
     _setQueryParams();
 
@@ -67,5 +70,14 @@ class AppDataProvider with ChangeNotifier {
     } catch (error) {
       print(error.toString());
     }
+  }
+
+  Color getAlertColor(String color) {
+    return switch(color) {
+      'green' => Colors.green,
+      'yellow' => Colors.yellow,
+      'orange' => Colors.orange,
+      _ => Colors.red,
+    };
   }
 }

@@ -42,7 +42,15 @@ class _HomePageState extends State<HomePage> {
                               'EEE MMM dd yyyy hh:mm a',
                             ),
                           ),
-                          trailing: Chip(label: Text('${data.mag}')),
+                          trailing: Chip(
+                             avatar: data.alert == null
+                                 ? null
+                                 : CircleAvatar(
+                                     backgroundColor:
+                                         provider.getAlertColor(data.alert!),
+                                   ),
+                              label: Text('${data.mag}'),
+                            ),
                         );
                       },
                     )
